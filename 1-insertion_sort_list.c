@@ -1,8 +1,8 @@
 #include "sort.h"
 
 /**
- * swaping - swap nodes.
- * @a: beagining node.
+ * swaping - swap nodes
+ * @a: first node
  * @b: next node.
  * Return: Empty
  */
@@ -19,12 +19,12 @@ void swaping(listint_t *a, listint_t *b)
 }
 
 /**
- * insertion_sort - insertion_sort.
- * @list: list insertion_sort.
+ * insertion_sort_list - insertion_sort_list.
+ * @list: insertion_sort_list.
  * Return: Empty
  */
 
-void insertion_sort(listint_t **list)
+void insertion_sort_list(listint_t **list)
 {
 	listint_t *i, *j;
 
@@ -49,4 +49,3 @@ void insertion_sort(listint_t **list)
 		}
 	}
 }
-
