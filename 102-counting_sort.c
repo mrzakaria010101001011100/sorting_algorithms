@@ -1,52 +1,52 @@
 #include "sort.h"
-#include <stdlib.h>
+#include "stdlib.h"
 
 /**
- * counting_sort - sort the array.
- * @array: array to be sorted.
- * @size: array size.
- * Return: nothing
+ * counting_sort - sorts arrays
+ * @array: array to sort and count
+ * @size: size of array to sort
+ * Return: blank
  */
-
 void counting_sort(int *array, size_t size)
 {
-	int i, max_num;
-	size_t j;
-	int *output_p = NULL, *counter = NULL;
+	int a, lf;
+	int *cnt = NULL, *tak = NULL;
+	size_t m, ptr, sumt = 0;
+
 
 	if (array == NULL || size < 2)
 		return;
-
-	output_p = malloc((size + 1) * sizeof(int));
-	if (output_p == NULL)
+	tak = malloc(sizeof(int) * size);
+	if (tak == NULL)
 		return;
-
-	max_num = array[0];
-	for (j = 1; j < size; j++)
+	for (m = 0, lf = 0; m < size; m++)
 	{
-		if (array[j] > max_num)
-			max_num = array[j];
+		tak[m] = array[m];
+		if (array[m] > lf)
+			lf = array[m];
 	}
-
-	counter = malloc((max_num + 1) * sizeof(int));
-	if (counter == NULL)
+	cnt = malloc(sizeof(int) * (lf + 1));
+	if (cnt == NULL)
 	{
-		free(output_p);
+		free(tak);
 		return;
 	}
-
-	for (j = 0; j < size; j++)
-		counter[array[j]]++;
-	for (i = 1; i <= max_num; i++)
-		counter[i] += counter[i - 1];
-	print_array(counter, max_num + 1);
-	for (j = 0; j < size; j++)
+	for (a = 0; a <= lf; a++)
+		cnt[a] = 0;
+	for (m = 0; m < size; m++)
+		cnt[array[m]] += 1;
+	for (a = 0; a <= lf; a++)
 	{
-		output_p[counter[array[j]] - 1] = array[j];
-		counter[array[j]]--;
+		ptr = cnt[a];
+		cnt[a] = sumt;
+		sumt += ptr;
 	}
-	for (j = 0; j < size; j++)
-		array[j] = output_p[j];
-	free(counter);
-	free(output_p);
+	for (m = 0; m < size; m++)
+	{
+		array[cnt[tak[m]]] = tak[m];
+		cnt[tak[m]] += 1;
+	}
+	print_array(cnt, lf + 1);
+	free(cnt);
+	free(tak);
 }
