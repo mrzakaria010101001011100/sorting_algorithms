@@ -1,66 +1,91 @@
 #include "sort.h"
-#include <sys/types.h>
+
+void swap_ints(int *a, int *b);
+int hoare_partition(int *array, size_t size, int left, int right);
+void hoare_sort(int *array, size_t size, int left, int right);
+void quick_sort_hoare(int *array, size_t size);
 
 /**
- * partition - divide array sort.
- * @array: array to be sorted.
- * @low: first index array
- * @high: the last index
- * @size: size of array.
- * Return: nothing.
+ * swap_ints - swap two integer
+ * @a: first array
+ * @b: second array
  */
-size_t partition(int *array, ssize_t low, ssize_t high, size_t size)
+void swap_ints(int *a, int *b)
 {
-	int pivot_p = array[low], swap;
-	ssize_t i = low - 1, j = high + 1;
+	int tmp;
 
-	while (1)
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+/**
+ * hoare_partition - Order a subset array of integers
+ *                   according to the hoare.
+ * @array: array of integers.
+ * @size: size of array.
+ * @left: The starting index of the subset.
+ * @right: The ending index of the subset.
+ *
+ * Return: The final partition index.
+ *
+ * Description: Uses last element of the partition.
+ * Prints the array after swap of elements.
+ */
+int hoare_partition(int *array, size_t size, int left, int right)
+{
+	int pivot, above, below;
+
+	pivot = array[right];
+	for (above = left - 1, below = right + 1; above < below;)
 	{
 		do {
-			i++;
-		} while (array[i] < pivot_p);
+			above++;
+		} while (array[above] < pivot);
 		do {
-			j--;
-		} while (array[j] > pivot_p);
-		if (i >= j)
-			return (j);
-		swap = array[j];
-		array[j] = array[i];
-		array[i] = swap;
-		print_array(array, size);
+			below--;
+		} while (array[below] > pivot);
+
+		if (above < below)
+		{
+			swap_ints(array + above, array + below);
+			print_array(array, size);
+		}
+	}
+
+	return (above);
+}
+
+/**
+ * hoare_sort - quciksort algorithm
+ * @array: array of integer
+ * @size: size the array
+ * @left: the start index
+ * @right: the end index.
+ * Description: the last index.
+ */
+void hoare_sort(int *array, size_t size, int left, int right)
+{
+	int part;
+
+	if (right - left > 0)
+	{
+		part = hoare_partition(array, size, left, right);
+		hoare_sort(array, size, left, part - 1);
+		hoare_sort(array, size, part, right);
 	}
 }
 
 /**
- * quicksort - divide array sort.
- * @array: array to be sorted.
- * @low: first index array
- * @high: the last index
- * @size: size of array.
- * Return: nothing.
- */
-void quicksort(int *array, ssize_t low, ssize_t high, size_t size)
-{
-	ssize_t p;
-
-	if (low < high)
-	{
-		p = partition(array, low, high, size);
-		quicksort(array, low, p, size);
-		quicksort(array, p + 1, high, size);
-	}
-}
-
-/**
- * quick_sort_hoare - divide array sort.
- * @array: array to be sorted.
- * @size: size of array.
- * Return: nothing.
+ * quick_sort_hoare - quciksort algorithm
+ * @array: array of integer
+ * @size: size the array
+ * Description: the last index.
  */
 void quick_sort_hoare(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
 		return;
 
-	quicksort(array, 0, size - 1, size);
+	hoare_sort(array, size, 0, size - 1);
 }
