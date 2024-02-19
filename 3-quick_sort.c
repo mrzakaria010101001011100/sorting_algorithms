@@ -3,11 +3,11 @@
 
 /**
  * partition_divide - divides the array to 2.
- * @array: array sorting
- * @low: first index
- * @high: last index 
+ * @array: array to be sorted
+ * @low: first index.
+ * @high: last index.
  * @size: size array.
- * Return: Empty
+ * Return: nothing.
  */
 
 size_t partition_divide(int *array, ssize_t low, ssize_t high, size_t size)
@@ -40,12 +40,12 @@ size_t partition_divide(int *array, ssize_t low, ssize_t high, size_t size)
 }
 
 /**
- * quicksort - divides the array sorting
- * @array: array sorted
- * @low: first index list
- * @high: last index list
- * @size: size  array.
- * Return: Empty
+ * quicksort - divides the array sorting.
+ * @array: array to be sorted.
+ * @low: first index.
+ * @high: last index.
+ * @size: size array.
+ * Return: nothing
  */
 void quicksort(int *array, ssize_t low, ssize_t high, size_t size)
 {
@@ -60,10 +60,10 @@ void quicksort(int *array, ssize_t low, ssize_t high, size_t size)
 }
 
 /**
- * quick_sort - divides the array sorting
- * @array: array sorted 
+ * quick_sort - divides the array sorting.
+ * @array: array to be sorted.
  * @size: size array.
- * Return: Empty
+ * Return: nothing
  */
 void quick_sort(int *array, size_t size)
 {
@@ -72,3 +72,4 @@ void quick_sort(int *array, size_t size)
 
 	quicksort(array, 0, size - 1, size);
 }
+
