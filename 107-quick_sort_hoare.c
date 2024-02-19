@@ -2,12 +2,12 @@
 #include <sys/types.h>
 
 /**
- * partition - divides the array swap datas
- * @array: array to be sorted
- * @low: first index 
- * @high: last index 
- * @size: size array.
- * Return: nothing
+ * partition - divide array sort.
+ * @array: array to be sorted.
+ * @low: first index array
+ * @high: the last index
+ * @size: size of array.
+ * Return: nothing.
  */
 size_t partition(int *array, ssize_t low, ssize_t high, size_t size)
 {
@@ -32,12 +32,12 @@ size_t partition(int *array, ssize_t low, ssize_t high, size_t size)
 }
 
 /**
- * quicksort - divides the array sorting
- * @array: array to be sorted
- * @low: first index 
- * @high: last index 
- * @size: size array.
- * Return: nothing
+ * quicksort - divide array sort.
+ * @array: array to be sorted.
+ * @low: first index array
+ * @high: the last index
+ * @size: size of array.
+ * Return: nothing.
  */
 void quicksort(int *array, ssize_t low, ssize_t high, size_t size)
 {
@@ -52,10 +52,10 @@ void quicksort(int *array, ssize_t low, ssize_t high, size_t size)
 }
 
 /**
- * quick_sort_hoare -  incremental sorting
- * @array: rray to be sorted 
- * @size: size array.
- * Return: nothing
+ * quick_sort_hoare - divide array sort.
+ * @array: array to be sorted.
+ * @size: size of array.
+ * Return: nothing.
  */
 void quick_sort_hoare(int *array, size_t size)
 {
